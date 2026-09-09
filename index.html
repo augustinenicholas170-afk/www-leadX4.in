@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lead X | Digital Marketing & Lead Generation</title>
+  <meta name="description" content="Lead X helps businesses generate quality leads, grow through Meta Ads, and build powerful social media presence.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --black:#080808;--black-2:#111;--black-3:#181818;--white:#fff;
+      --yellow:#ffd21f;--yellow-dark:#e8b900;--yellow-soft:#fff8d6;
+      --text:#111;--muted:#666;--border:rgba(0,0,0,.1);
+      --shadow:0 20px 60px rgba(0,0,0,.1);--radius:24px;--max-width:1180px;
+    }
+    *{margin:0;padding:0;box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{font-family:Inter,sans-serif;background:#fff;color:var(--text);line-height:1.6;overflow-x:hidden}
+    a{text-decoration:none;color:inherit} img{max-width:100%;display:block}
+    button,input,textarea,select{font-family:inherit}.container{width:min(92%,var(--max-width));margin:auto}
+    .navbar{position:fixed;top:0;left:0;width:100%;z-index:9999;background:rgba(255,255,255,.94);backdrop-filter:blur(16px);border-bottom:1px solid rgba(0,0,0,.08);transition:.3s}
+    .nav-inner{height:82px;display:flex;align-items:center;justify-content:space-between;gap:30px}
+    .brand{display:flex;align-items:center;gap:10px;font-weight:900;font-size:20px;letter-spacing:-1px}
+    .brand img{width:48px;height:48px;object-fit:contain;border-radius:10px}
+    .brand-name{color:var(--black)}.brand-name span{color:var(--yellow-dark)}
+    .nav-links{display:flex;align-items:center;gap:28px}
+    .nav-links a{position:relative;font-size:14px;font-weight:700;color:#222;transition:.25s}
+    .nav-links a:not(.login-btn)::after{content:"";position:absolute;left:0;bottom:-7px;width:0;height:3px;background:var(--yellow);border-radius:20px;transition:.25s}
+    .nav-links a:hover::after{width:100%}
+    .login-btn{background:var(--black);color:var(--yellow)!important;padding:12px 20px;border-radius:50px;border:2px solid var(--black);transition:.25s}
+    .login-btn:hover{background:var(--yellow);color:var(--black)!important;border-color:var(--yellow);transform:translateY(-2px)}
+    .menu-btn{display:none;width:44px;height:44px;border:0;background:var(--black);color:var(--yellow);border-radius:12px;font-size:22px;cursor:pointer}
+
+    .hero{padding:160px 0 90px;position:relative;overflow:hidden;background:radial-gradient(circle at 85% 20%,rgba(255,210,31,.25),transparent 25%),#fff}
+    .hero::before{content:"";position:absolute;width:450px;height:450px;background:var(--yellow);border-radius:50%;right:-220px;top:100px;opacity:.12;filter:blur(5px)}
+    .hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:70px;align-items:center;position:relative;z-index:2}
+    .eyebrow{display:inline-flex;align-items:center;gap:8px;background:var(--yellow-soft);border:1px solid rgba(255,210,31,.55);padding:9px 14px;border-radius:50px;font-size:12px;font-weight:900;letter-spacing:1.2px;margin-bottom:22px}
+    .eyebrow-dot{width:8px;height:8px;background:var(--yellow-dark);border-radius:50%}
+    .hero h1{font-size:clamp(42px,5vw,72px);line-height:1.02;letter-spacing:-4px;font-weight:900;max-width:750px}
+    .highlight{position:relative;display:inline-block;z-index:1}
+    .highlight::after{content:"";position:absolute;left:-5px;right:-5px;bottom:5px;height:17px;background:var(--yellow);z-index:-1;transform:rotate(-1.5deg);border-radius:4px}
+    .hero-text{margin-top:25px;max-width:650px;color:var(--muted);font-size:17px;line-height:1.8}
+    .hero-actions{display:flex;gap:14px;flex-wrap:wrap;margin-top:32px}
+    .btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;padding:15px 24px;border-radius:50px;font-size:14px;font-weight:800;border:2px solid transparent;cursor:pointer;transition:.25s}
+    .btn-primary{background:var(--yellow);color:var(--black);border-color:var(--yellow);box-shadow:0 12px 30px rgba(255,210,31,.25)}
+    .btn-primary:hover{background:var(--black);color:var(--yellow);border-color:var(--black);transform:translateY(-3px)}
+    .btn-dark{background:var(--black);color:#fff;border-color:var(--black)}.btn-dark:hover{background:var(--yellow);color:var(--black);border-color:var(--yellow);transform:translateY(-3px)}
+    .hero-visual{position:relative;min-height:500px}
+    .dashboard{position:absolute;width:100%;max-width:500px;right:0;top:10px;background:var(--black);border-radius:32px;padding:22px;box-shadow:0 30px 80px rgba(0,0,0,.24);transform:rotate(2deg)}
+    .dashboard-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px}
+    .dash-title{color:#fff;font-size:14px;font-weight:800}.dash-status{background:var(--yellow);color:var(--black);padding:5px 10px;border-radius:30px;font-size:10px;font-weight:900}
+    .chart{height:190px;border-radius:20px;background:linear-gradient(rgba(255,255,255,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.06) 1px,transparent 1px),var(--black-2);background-size:35px 35px;overflow:hidden}
+    .chart svg{width:100%;height:100%}.dash-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:12px}
+    .dash-card{background:#fff;border-radius:16px;padding:15px}.dash-card small{display:block;color:#777;font-size:9px;font-weight:700;margin-bottom:4px}.dash-card strong{font-size:19px;font-weight:900}
+    .floating-card{position:absolute;background:#fff;border:1px solid var(--border);box-shadow:var(--shadow);border-radius:18px;padding:18px;z-index:3}
+    .floating-one{left:-20px;top:110px}.floating-two{right:-20px;bottom:65px}.floating-label{color:#777;font-size:10px;font-weight:700;margin-bottom:5px}.floating-value{font-size:24px;font-weight:900}.floating-yellow{color:#c99d00}
+
+    .stats{background:var(--black);color:#fff;padding:25px 0}.stats-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+    .stat{text-align:center;padding:15px;border-right:1px solid rgba(255,255,255,.1)}.stat:last-child{border-right:0}
+    .stat strong{display:block;color:var(--yellow);font-size:27px;font-weight:900}.stat span{font-size:12px;color:#aaa;font-weight:600}
+    section{scroll-margin-top:90px}.section{padding:110px 0}.section-yellow{background:var(--yellow-soft)}.section-black{background:var(--black);color:#fff}
+    .section-head{max-width:700px;margin-bottom:55px}.section-label{display:inline-block;color:#b48a00;font-size:12px;font-weight:900;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:13px}
+    .section-black .section-label{color:var(--yellow)}.section-title{font-size:clamp(34px,4vw,55px);line-height:1.08;letter-spacing:-2.5px;font-weight:900}
+    .section-description{margin-top:18px;color:var(--muted);max-width:680px}.section-black .section-description{color:#aaa}
+
+    .services-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}.service-card{background:#fff;border:1px solid var(--border);padding:28px;border-radius:24px;min-height:300px;position:relative;overflow:hidden;transition:.3s}
+    .service-card::before{content:"";position:absolute;width:90px;height:90px;border-radius:50%;background:var(--yellow);right:-35px;top:-35px;opacity:.25;transition:.3s}
+    .service-card:hover{transform:translateY(-8px);border-color:var(--yellow);box-shadow:var(--shadow)}.service-card:hover::before{transform:scale(2.2);opacity:.45}
+    .service-number{font-size:12px;font-weight:900;color:#a88a00}.service-icon{width:55px;height:55px;border-radius:16px;background:var(--black);color:var(--yellow);display:flex;align-items:center;justify-content:center;margin:30px 0 20px;font-size:24px;position:relative;z-index:2}
+    .service-card h3{font-size:20px;font-weight:900;margin-bottom:12px;position:relative;z-index:2}.service-card p{color:var(--muted);font-size:13px;position:relative;z-index:2}
+
+    .about-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:80px;align-items:center}.about-visual{min-height:520px;background:var(--black);border-radius:34px;position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;box-shadow:var(--shadow)}
+    .about-x{font-size:260px;font-weight:900;color:var(--yellow);line-height:1;transform:rotate(-10deg)}.about-circle{position:absolute;width:180px;height:180px;border:3px solid rgba(255,210,31,.35);border-radius:50%;right:-50px;top:40px}
+    .about-circle-two{position:absolute;width:300px;height:300px;border:2px solid rgba(255,255,255,.12);border-radius:50%;left:-120px;bottom:-80px}
+    .about-badge{position:absolute;background:#fff;color:var(--black);padding:18px 22px;border-radius:18px;bottom:30px;right:30px;box-shadow:var(--shadow)}.about-badge strong{display:block;font-size:26px;font-weight:900}.about-badge span{color:#777;font-size:11px;font-weight:700}
+    .about-content h2{font-size:clamp(35px,4vw,55px);line-height:1.08;letter-spacing:-2.5px;font-weight:900}.about-content p{color:var(--muted);margin-top:22px;line-height:1.8}
+    .check-list{list-style:none;margin-top:28px;display:grid;gap:15px}.check-list li{display:flex;align-items:flex-start;gap:12px;font-size:14px;font-weight:700}.check{width:24px;height:24px;min-width:24px;background:var(--yellow);color:var(--black);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:900}
+
+    .work-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}.work-card{background:var(--black-2);border-radius:25px;overflow:hidden;border:1px solid rgba(255,255,255,.08);transition:.3s}
+    .work-card:hover{transform:translateY(-8px);border-color:var(--yellow)}.work-image{height:230px;position:relative;overflow:hidden;background:var(--yellow)}
+    .work-image.one{background:radial-gradient(circle at 70% 30%,rgba(255,255,255,.7),transparent 18%),var(--yellow)}
+    .work-image.two{background:linear-gradient(135deg,var(--black) 0 45%,var(--yellow) 45% 100%)}.work-image.three{background:radial-gradient(circle at 30% 50%,var(--yellow) 0 20%,transparent 21%),var(--black)}
+    .work-shape{position:absolute;width:140px;height:140px;border-radius:28px;background:var(--black);transform:rotate(18deg);right:45px;top:45px}
+    .work-image.two .work-shape{background:#fff;width:120px;height:120px;border-radius:50%;transform:none;right:50px}.work-image.three .work-shape{width:170px;height:80px;background:var(--yellow);transform:rotate(-15deg);right:30px}
+    .work-content{padding:25px}.work-content small{color:var(--yellow);font-size:10px;font-weight:900;letter-spacing:1px;text-transform:uppercase}.work-content h3{color:#fff;margin-top:8px;font-size:21px;font-weight:900}.work-content p{color:#999;margin-top:9px;font-size:13px}
+
+    .process-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}.process-card{background:#fff;border:1px solid rgba(0,0,0,.08);border-radius:22px;padding:28px;position:relative}
+    .process-number{font-size:42px;font-weight:900;color:rgba(0,0,0,.08);line-height:1}.process-card h3{margin-top:35px;font-size:19px;font-weight:900}.process-card p{color:var(--muted);margin-top:10px;font-size:13px}
+
+    .cta{padding:100px 0;background:var(--black);color:#fff;position:relative;overflow:hidden}.cta::before{content:"X";position:absolute;right:-50px;top:-110px;font-size:500px;font-weight:900;color:rgba(255,210,31,.07);line-height:1}
+    .cta-inner{position:relative;z-index:2;display:flex;align-items:center;justify-content:space-between;gap:40px}.cta h2{font-size:clamp(38px,5vw,65px);line-height:1.05;letter-spacing:-3px;font-weight:900;max-width:700px}.cta h2 span{color:var(--yellow)}.cta p{color:#aaa;margin-top:18px;max-width:620px}
+
+    .contact-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:70px;align-items:start}.contact-info h2{font-size:clamp(36px,4vw,55px);line-height:1.05;letter-spacing:-2.5px;font-weight:900}
+    .contact-info>p{color:var(--muted);margin-top:20px;line-height:1.8}.contact-item{display:flex;gap:15px;align-items:center;margin-top:30px}.contact-icon{width:50px;height:50px;border-radius:15px;background:var(--yellow);color:var(--black);display:flex;align-items:center;justify-content:center;font-weight:900}
+    .contact-item small{display:block;color:#888;font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:1px}.contact-item strong{font-size:15px}
+    .contact-form{background:var(--black);padding:35px;border-radius:28px;box-shadow:var(--shadow)}.contact-form h3{color:#fff;font-size:24px;font-weight:900;margin-bottom:25px}
+    .form-row{display:grid;grid-template-columns:1fr 1fr;gap:15px}.form-group{margin-bottom:15px}.form-group label{display:block;color:#aaa;font-size:11px;font-weight:700;margin-bottom:7px}
+    .form-group input,.form-group textarea,.form-group select{width:100%;border:1px solid rgba(255,255,255,.12);background:var(--black-2);color:#fff;border-radius:12px;padding:13px 14px;outline:0;transition:.2s}
+    .form-group input:focus,.form-group textarea:focus,.form-group select:focus{border-color:var(--yellow)}.form-group textarea{min-height:120px;resize:vertical}.submit-btn{width:100%;margin-top:5px}
+
+    footer{background:#050505;color:#fff;padding:55px 0 25px}.footer-grid{display:grid;grid-template-columns:1.3fr .7fr .7fr;gap:50px;padding-bottom:40px;border-bottom:1px solid rgba(255,255,255,.08)}
+    .footer-brand{display:flex;align-items:center;gap:10px;font-size:23px;font-weight:900}.footer-brand img{width:45px;height:45px;object-fit:contain;border-radius:8px}.footer-brand span{color:var(--yellow)}
+    .footer-description{color:#888;margin-top:15px;max-width:430px;font-size:13px}.footer-column h4{color:var(--yellow);font-size:12px;text-transform:uppercase;letter-spacing:1px;margin-bottom:15px}
+    .footer-column a{display:block;color:#aaa;font-size:13px;margin-bottom:9px;transition:.2s}.footer-column a:hover{color:var(--yellow)}
+    .footer-bottom{padding-top:25px;display:flex;align-items:center;justify-content:space-between;gap:20px;color:#666;font-size:11px}
+
+    .whatsapp{position:fixed;right:22px;bottom:22px;width:60px;height:60px;background:#25D366;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;z-index:9998;box-shadow:0 12px 35px rgba(0,0,0,.22);transition:.25s}
+    .whatsapp:hover{transform:scale(1.08) translateY(-3px)}.whatsapp svg{width:31px;height:31px;fill:#fff}
+    .reveal{opacity:0;transform:translateY(35px);transition:opacity .7s ease,transform .7s ease}.reveal.active{opacity:1;transform:translateY(0)}
+
+    @media(max-width:1000px){
+      .hero-grid,.about-grid,.contact-grid{grid-template-columns:1fr}.hero-visual{min-height:470px;max-width:650px;width:100%;margin:auto}
+      .services-grid{grid-template-columns:repeat(2,1fr)}.process-grid{grid-template-columns:repeat(2,1fr)}.work-grid{grid-template-columns:1fr}
+      .about-grid{gap:45px}.about-visual{min-height:430px}.cta-inner{flex-direction:column;align-items:flex-start}.footer-grid{grid-template-columns:1fr 1fr}
+    }
+    @media(max-width:760px){
+      .nav-inner{height:72px}.brand img{width:42px;height:42px}.brand-name{font-size:17px}.menu-btn{display:block}
+      .nav-links{position:absolute;top:72px;left:0;width:100%;background:#fff;border-bottom:1px solid var(--border);padding:20px;display:none;flex-direction:column;align-items:stretch;gap:15px}
+      .nav-links.open{display:flex}.nav-links a{padding:10px}.login-btn{text-align:center}.hero{padding-top:130px}.hero h1{letter-spacing:-2.5px}.hero-text{font-size:15px}
+      .hero-visual{min-height:390px}.dashboard{width:92%;padding:15px}.floating-one{left:-5px;top:90px}.floating-two{right:-5px;bottom:35px}.floating-card{padding:13px}.floating-value{font-size:19px}.chart{height:150px}
+      .stats-grid{grid-template-columns:1fr}.stat{border-right:0;border-bottom:1px solid rgba(255,255,255,.1)}.stat:last-child{border-bottom:0}
+      .section{padding:80px 0}.services-grid,.process-grid{grid-template-columns:1fr}.about-visual{min-height:350px}.about-x{font-size:190px}.form-row{grid-template-columns:1fr}
+      .contact-form{padding:25px}.footer-grid{grid-template-columns:1fr;gap:35px}.footer-bottom{flex-direction:column;align-items:flex-start}.whatsapp{width:56px;height:56px;right:16px;bottom:16px}
+    }
+    @media(max-width:450px){
+      .hero-actions{flex-direction:column;align-items:stretch}.btn{width:100%}.hero-visual{min-height:340px}.dashboard{top:20px}.floating-one{top:75px}.floating-two{bottom:10px}
+      .dash-cards{grid-template-columns:1fr}.dash-card{padding:10px}.dash-card strong{font-size:15px}
+    }
+  </style>
+</head>
+
+<body>
+
+<header class="navbar" id="navbar">
+  <div class="container nav-inner">
+    <a href="#home" class="brand">
+      <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjkmybetL17_yrV1UG_SZs4GYYV9fcwW937QLD4XfNbLU89Ers3nF6BkQ6SS1Va6iKhv_l9uLZ9Lb2ZIsbi_EApG5IdFPBSbQDkF8IpsA5Dx3qcJY4yfzJi8v8ZpkFQFC-PQJRA4-jIylngrzbnjQk3bPLF0cJFVNpK5bq3xZWdZEB7J6X1wkY0aWB5p1zg/s320/WhatsApp%20Image%202026-09-09%20at%2009.50.41.jpeg" alt="Lead X Logo">
+      <div class="brand-name">LEAD <span>X</span></div>
+    </a>
+
+    <button class="menu-btn" id="menuBtn">☰</button>
+
+    <nav class="nav-links" id="navLinks">
+      <a href="#home">Home</a>
+      <a href="#services">Services</a>
+      <a href="#about">About</a>
+      <a href="#work">Our Work</a>
+      <a href="#process">Process</a>
+      <a href="#contact">Contact</a>
+      <a class="login-btn" href="https://script.google.com/macros/s/AKfycbzDDTm_sSKIVJigE2V_DpZF53AFdtmDNw9EyJUP-2uyjMW3LOZXXleBmOi5l8KDf7HsJg/exec" target="_blank" rel="noopener">Login</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+<section class="hero" id="home">
+  <div class="container hero-grid">
+    <div class="hero-content reveal">
+      <div class="eyebrow"><span class="eyebrow-dot"></span>DIGITAL GROWTH PARTNER</div>
+      <h1>Your Business Deserves More Than Views. It Deserves <span class="highlight">Leads.</span></h1>
+      <p class="hero-text">We help businesses turn attention into action through powerful digital marketing, Meta Ads, social media management, and lead generation strategies designed to create real business opportunities.</p>
+      <div class="hero-actions">
+        <a href="#contact" class="btn btn-primary">Get More Leads →</a>
+        <a href="#work" class="btn btn-dark">See Our Work</a>
+      </div>
+    </div>
+
+    <div class="hero-visual reveal">
+      <div class="floating-card floating-one"><div class="floating-label">Qualified Leads</div><div class="floating-value floating-yellow">+248%</div></div>
+      <div class="dashboard">
+        <div class="dashboard-top"><div class="dash-title">Lead X Campaign</div><div class="dash-status">LIVE</div></div>
+        <div class="chart">
+          <svg viewBox="0 0 500 190" preserveAspectRatio="none">
+            <polyline points="0,165 55,150 100,158 145,120 190,130 235,95 280,110 325,70 370,82 415,42 455,55 500,18" fill="none" stroke="#FFD21F" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+            <polyline points="0,165 55,150 100,158 145,120 190,130 235,95 280,110 325,70 370,82 415,42 455,55 500,18 500,190 0,190" fill="rgba(255,210,31,.10)" stroke="none"/>
+          </svg>
+        </div>
+        <div class="dash-cards">
+          <div class="dash-card"><small>REACH</small><strong>84K</strong></div>
+          <div class="dash-card"><small>LEADS</small><strong>1.8K</strong></div>
+          <div class="dash-card"><small>GROWTH</small><strong>+72%</strong></div>
+        </div>
+      </div>
+      <div class="floating-card floating-two"><div class="floating-label">Campaign Status</div><div class="floating-value">Growing ↑</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="stats">
+  <div class="container stats-grid">
+    <div class="stat"><strong>Meta Ads</strong><span>Performance-focused advertising</span></div>
+    <div class="stat"><strong>Social Media</strong><span>Build a powerful online presence</span></div>
+    <div class="stat"><strong>Lead Generation</strong><span>Turn attention into opportunities</span></div>
+  </div>
+</section>
+
+<section class="section" id="services">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="section-label">What We Do</span>
+      <h2 class="section-title">Marketing that moves your business forward.</h2>
+      <p class="section-description">We combine creative marketing with performance-driven strategies to help businesses attract the right audience, generate enquiries, and build consistent growth.</p>
+    </div>
+
+    <div class="services-grid">
+      <div class="service-card reveal"><div class="service-number">01</div><div class="service-icon">◉</div><h3>Meta Ads</h3><p>Reach the right people with targeted Facebook and Instagram campaigns designed around leads, enquiries, and conversions.</p></div>
+      <div class="service-card reveal"><div class="service-number">02</div><div class="service-icon">#</div><h3>Lead Generation</h3><p>Build a consistent flow of potential customers using smart targeting, compelling offers, and conversion-focused campaigns.</p></div>
+      <div class="service-card reveal"><div class="service-number">03</div><div class="service-icon">◎</div><h3>Social Media</h3><p>Build a professional social presence that communicates your brand clearly and keeps your audience engaged.</p></div>
+      <div class="service-card reveal"><div class="service-number">04</div><div class="service-icon">↗</div><h3>Business Growth</h3><p>Connect your marketing efforts into a complete growth system focused on attracting attention and creating opportunities.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="section section-yellow" id="about">
+  <div class="container about-grid">
+    <div class="about-visual reveal">
+      <div class="about-circle"></div><div class="about-circle-two"></div><div class="about-x">X</div>
+      <div class="about-badge"><strong>LEAD</strong><span>Attention → Interest → Action</span></div>
+    </div>
+
+    <div class="about-content reveal">
+      <span class="section-label">About Lead X</span>
+      <h2>We don't just market businesses. We build opportunities.</h2>
+      <p>At Lead X, our goal is simple: help businesses get discovered, get noticed, and get contacted.</p>
+      <p>From Meta Ads and social media management to complete lead generation campaigns, we focus on strategies that connect your business with people who actually matter.</p>
+      <ul class="check-list">
+        <li><span class="check">✓</span>Strategies built around your business</li>
+        <li><span class="check">✓</span>Lead-focused advertising campaigns</li>
+        <li><span class="check">✓</span>Professional social media presence</li>
+        <li><span class="check">✓</span>Focus on measurable business growth</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="section section-black" id="work">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="section-label">Our Work</span>
+      <h2 class="section-title">Creative ideas. Real business goals.</h2>
+      <p class="section-description">Every campaign starts with a business objective. We build the creative, audience strategy, and marketing approach around it.</p>
+    </div>
+
+    <div class="work-grid">
+      <div class="work-card reveal"><div class="work-image one"><div class="work-shape"></div></div><div class="work-content"><small>Lead Generation</small><h3>Turning Reach Into Enquiries</h3><p>Campaign strategy focused on attracting potential customers and creating new business conversations.</p></div></div>
+      <div class="work-card reveal"><div class="work-image two"><div class="work-shape"></div></div><div class="work-content"><small>Meta Advertising</small><h3>Building Campaign Momentum</h3><p>Targeted advertising designed to put the right offer in front of the right audience.</p></div></div>
+      <div class="work-card reveal"><div class="work-image three"><div class="work-shape"></div></div><div class="work-content"><small>Social Media</small><h3>Making Brands Stand Out</h3><p>Consistent content and creative direction that makes a brand look professional and memorable.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="section section-yellow" id="process">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="section-label">Our Process</span>
+      <h2 class="section-title">Simple process. Serious execution.</h2>
+      <p class="section-description">We keep the process clear so you always know what we're working on and why.</p>
+    </div>
+
+    <div class="process-grid">
+      <div class="process-card reveal"><div class="process-number">01</div><h3>Understand</h3><p>We learn about your business, audience, offer, and growth goals.</p></div>
+      <div class="process-card reveal"><div class="process-number">02</div><h3>Strategize</h3><p>We build the right marketing approach based on your objectives.</p></div>
+      <div class="process-card reveal"><div class="process-number">03</div><h3>Launch</h3><p>Campaigns, content, ads, and lead-generation systems go live.</p></div>
+      <div class="process-card reveal"><div class="process-number">04</div><h3>Optimize</h3><p>We monitor performance and improve what is working over time.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="cta">
+  <div class="container cta-inner reveal">
+    <div>
+      <h2>Ready to turn attention into <span>business?</span></h2>
+      <p>Let's build a digital marketing strategy that brings your business more visibility, more enquiries, and more opportunities.</p>
+    </div>
+    <a href="#contact" class="btn btn-primary">Let's Talk →</a>
+  </div>
+</section>
+
+<section class="section" id="contact">
+  <div class="container contact-grid">
+    <div class="contact-info reveal">
+      <span class="section-label">Contact Us</span>
+      <h2>Let's talk about your next growth move.</h2>
+      <p>Tell us a little about your business and what you're trying to achieve. We'll start the conversation from there.</p>
+      <div class="contact-item"><div class="contact-icon">☎</div><div><small>Phone / WhatsApp</small><strong>+91 63797 52756</strong></div></div>
+      <div class="contact-item"><div class="contact-icon">↗</div><div><small>Response</small><strong>Let's discuss your goals</strong></div></div>
+    </div>
+
+    <form class="contact-form reveal" id="contactForm">
+      <h3>Start a conversation</h3>
+      <div class="form-row">
+        <div class="form-group"><label for="name">YOUR NAME</label><input type="text" id="name" placeholder="Your name" required></div>
+        <div class="form-group"><label for="business">BUSINESS NAME</label><input type="text" id="business" placeholder="Your business" required></div>
+      </div>
+      <div class="form-row">
+        <div class="form-group"><label for="phone">PHONE</label><input type="tel" id="phone" placeholder="Your phone number" required></div>
+        <div class="form-group"><label for="service">SERVICE</label>
+          <select id="service">
+            <option>Lead Generation</option><option>Meta Ads</option><option>Social Media</option><option>Digital Marketing</option><option>Other</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group"><label for="message">TELL US ABOUT YOUR BUSINESS</label><textarea id="message" placeholder="What are you looking to achieve?"></textarea></div>
+      <button type="submit" class="btn btn-primary submit-btn">Send on WhatsApp →</button>
+    </form>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand">
+          <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjkmybetL17_yrV1UG_SZs4GYYV9fcwW937QLD4XfNbLU89Ers3nF6BkQ6SS1Va6iKhv_l9uLZ9Lb2ZIsbi_EApG5IdFPBSbQDkF8IpsA5Dx3qcJY4yfzJi8v8ZpkFQFC-PQJRA4-jIylngrzbnjQk3bPLF0cJFVNpK5bq3xZWdZEB7J6X1wkY0aWB5p1zg/s320/WhatsApp%20Image%202026-09-09%20at%2009.50.41.jpeg" alt="Lead X">
+          <div>LEAD <span>X</span></div>
+        </div>
+        <p class="footer-description">Digital marketing focused on one thing: helping businesses generate more opportunities.</p>
+      </div>
+      <div class="footer-column"><h4>Navigate</h4><a href="#home">Home</a><a href="#services">Services</a><a href="#about">About</a><a href="#work">Our Work</a><a href="#contact">Contact</a></div>
+      <div class="footer-column"><h4>Services</h4><a href="#services">Meta Ads</a><a href="#services">Lead Generation</a><a href="#services">Social Media</a><a href="#services">Business Growth</a></div>
+    </div>
+    <div class="footer-bottom"><div>© <span id="year"></span> Lead X. All rights reserved.</div><div>Built for growth.</div></div>
+  </div>
+</footer>
+
+<a href="https://wa.me/916379752756" target="_blank" rel="noopener" class="whatsapp" aria-label="Chat with Lead X on WhatsApp">
+  <svg viewBox="0 0 24 24"><path d="M20.52 3.48A11.78 11.78 0 0 0 12.08 0C5.56 0 .25 5.31.25 11.83c0 2.08.54 4.11 1.57 5.9L.16 24l6.43-1.68a11.83 11.83 0 0 0 5.48 1.39h.01c6.52 0 11.83-5.31 11.83-11.83 0-3.15-1.23-6.11-3.39-8.4ZM12.08 21.72h-.01a9.82 9.82 0 0 1-5.01-1.37l-.36-.21-3.82 1 1.02-3.72-.23-.38a9.83 9.83 0 1 1 8.41 4.68Zm5.39-7.37c-.29-.15-1.72-.85-1.99-.95-.27-.1-.46-.15-.65.15-.19.29-.75.95-.92 1.14-.17.19-.34.22-.63.07-.29-.15-1.21-.45-2.31-1.43-.85-.76-1.43-1.7-1.6-1.99-.17-.29-.02-.45.13-.6.13-.13.29-.34.44-.51.15-.17.19-.29.29-.49.1-.19.05-.37-.02-.52-.07-.15-.65-1.57-.89-2.15-.23-.56-.47-.48-.65-.49h-.55c-.19 0-.49.07-.75.37-.26.29-1 1-1 2.43s1.02 2.82 1.16 3.02c.15.19 2 3.05 4.85 4.28.68.29 1.21.46 1.62.59.68.22 1.3.19 1.79.12.55-.08 1.72-.7 1.97-1.37.24-.68.24-1.26.17-1.37-.07-.12-.26-.19-.55-.34Z"/></svg>
+</a>
+
+<script>
+  const menuBtn=document.getElementById("menuBtn");
+  const navLinks=document.getElementById("navLinks");
+
+  menuBtn.addEventListener("click",()=>{
+    navLinks.classList.toggle("open");
+    menuBtn.textContent=navLinks.classList.contains("open")?"✕":"☰";
+  });
+
+  document.querySelectorAll(".nav-links a").forEach(link=>{
+    link.addEventListener("click",()=>{
+      navLinks.classList.remove("open");
+      menuBtn.textContent="☰";
+    });
+  });
+
+  const observer=new IntersectionObserver(entries=>{
+    entries.forEach(entry=>{
+      if(entry.isIntersecting) entry.target.classList.add("active");
+    });
+  },{threshold:.12});
+
+  document.querySelectorAll(".reveal").forEach(el=>observer.observe(el));
+
+  document.getElementById("contactForm").addEventListener("submit",e=>{
+    e.preventDefault();
+
+    const name=document.getElementById("name").value.trim();
+    const business=document.getElementById("business").value.trim();
+    const phone=document.getElementById("phone").value.trim();
+    const service=document.getElementById("service").value;
+    const message=document.getElementById("message").value.trim();
+
+    const whatsappMessage=`Hello Lead X!
+
+Name: ${name}
+Business: ${business}
+Phone: ${phone}
+Interested In: ${service}
+
+Message:
+${message || "I would like to discuss digital marketing for my business."}`;
+
+    window.open(
+      "https://wa.me/916379752756?text="+encodeURIComponent(whatsappMessage),
+      "_blank"
+    );
+  });
+
+  document.getElementById("year").textContent=new Date().getFullYear();
+
+  const navbar=document.getElementById("navbar");
+  window.addEventListener("scroll",()=>{
+    navbar.style.boxShadow=window.scrollY>20
+      ?"0 8px 30px rgba(0,0,0,.07)"
+      :"none";
+  });
+</script>
+
+</body>
+</html>
